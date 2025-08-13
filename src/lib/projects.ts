@@ -18,6 +18,7 @@ export type ProjectFrontmatter = {
   video?: string;
   client?: string;
   studio?: string;
+  company?: string;
   role?: string;
   teamSize?: number;
   responsibilities?: string[];
@@ -27,10 +28,13 @@ export type ProjectFrontmatter = {
   goal?: string;
   learningFocus?: string[];
   jam?: string;
+  description?: string;
+  url?: string;
 };
 
 export type Project = ProjectFrontmatter & {
   content: string;
+  description: string;
 };
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "projects");
@@ -44,7 +48,9 @@ export function getAllProjects(): Project[] {
       const raw = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(raw);
       const fm = data as ProjectFrontmatter;
-      return { ...fm, content } as Project;
+      const slug = fm.slug || path.basename(filename, path.extname(filename));
+      const description = fm.description || content.slice(0, 200) + "...";
+      return { ...fm, slug, content, description } as Project;
     })
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
@@ -56,7 +62,9 @@ export function getProjectBySlug(slug: string): Project | null {
     const raw = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(raw);
     const fm = data as ProjectFrontmatter;
-    if (fm.slug === slug) return { ...fm, content } as Project;
+    const projectSlug = fm.slug || path.basename(filename, path.extname(filename));
+    const description = fm.description || content.slice(0, 200) + "...";
+    if (projectSlug === slug) return { ...fm, slug: projectSlug, content, description } as Project;
   }
   return null;
 }

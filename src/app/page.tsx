@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4">
       <div className="text-center mb-16">
-        <h1 className="text-5xl font-bold mb-4">odissey.space</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 font-pixel">odissey.space</h1>
         <p className="text-xl opacity-80 mb-8">Level / Game / Technical Design Portfolio</p>
         <p className="text-lg opacity-70 max-w-2xl mx-auto">
           Explore my journey through game development, level design, and technical innovation. 

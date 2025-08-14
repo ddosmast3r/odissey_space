@@ -5,7 +5,8 @@
       "WebFetch(domain:fonts.google.com)",
       "WebFetch(domain:www.g5.com)",
       "Bash(npm run dev:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

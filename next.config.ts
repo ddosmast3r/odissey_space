@@ -11,9 +11,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ['gray-matter'],
-  },
+  serverExternalPackages: ['gray-matter'],
 };
 
 export default nextConfig;

@@ -23,7 +23,7 @@ export default async function ProjectPage({ params }: { params: Promise<RoutePar
     <article className="max-w-4xl mx-auto py-16 px-4">
       <header className="mb-12">
         <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-        <div className="text-lg opacity-70">
+        <div className="flex flex-wrap items-center gap-3 text-lg opacity-70">
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${
             project.projectType === "professional" 
               ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" 
@@ -31,7 +31,17 @@ export default async function ProjectPage({ params }: { params: Promise<RoutePar
           }`}>
             {project.projectType === "professional" ? "Professional" : "Personal"}
           </span>
-          {project.year && <span className="ml-3">{project.year}</span>}
+          {project.workPeriod && (
+            <span className="text-sm bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
+              📅 {project.workPeriod}
+            </span>
+          )}
+          {project.year && !project.workPeriod && <span>{project.year}</span>}
+          {project.company && (
+            <span className="text-sm opacity-60">
+              @ {project.company}
+            </span>
+          )}
         </div>
       </header>
       

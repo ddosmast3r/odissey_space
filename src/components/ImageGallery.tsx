@@ -49,19 +49,19 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 md:p-2 rounded-full transition-colors z-10"
               aria-label="Previous image"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 md:p-2 rounded-full transition-colors z-10"
               aria-label="Next image"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -70,7 +70,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 
         {/* Image Counter */}
         {images.length > 1 && (
-          <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+          <div className="absolute top-2 md:top-4 right-2 md:right-4 bg-black/50 text-white px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">
             {currentIndex + 1} / {images.length}
           </div>
         )}
@@ -78,20 +78,20 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 
       {/* Caption */}
       {images[currentIndex].caption && (
-        <p className="text-center text-sm opacity-70 mt-3">
+        <p className="text-center text-xs md:text-sm opacity-70 mt-2 md:mt-3">
           {images[currentIndex].caption}
         </p>
       )}
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="mt-4">
-          <div className="flex gap-2 justify-center overflow-x-auto pb-2">
+        <div className="mt-3 md:mt-4">
+          <div className="flex gap-1.5 md:gap-2 justify-center overflow-x-auto pb-2">
             {images.map((image, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
+                className={`relative w-12 h-12 md:w-16 md:h-16 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
                   index === currentIndex
                     ? "border-blue-500 scale-110"
                     : "border-gray-300 dark:border-gray-600 hover:border-blue-300"
@@ -102,7 +102,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
                   alt={image.alt}
                   fill
                   className="object-cover"
-                  sizes="64px"
+                  sizes="(max-width: 768px) 48px, 64px"
                 />
               </button>
             ))}

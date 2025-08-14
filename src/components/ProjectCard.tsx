@@ -6,27 +6,27 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group block rounded-lg border border-black/10 dark:border-white/10 p-6 hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
+      className="group block rounded-lg border border-black/10 dark:border-white/10 p-4 md:p-6 hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
     >
-      <div className="flex gap-6 items-start">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
         {project.cover ? (
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-full md:w-auto">
             <Image
               src={project.cover}
               alt={project.title}
               width={120}
               height={80}
-              className="rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
+              className="rounded-lg object-cover group-hover:scale-105 transition-transform duration-300 w-full md:w-[120px] h-[160px] md:h-[80px]"
             />
           </div>
         ) : (
-          <div className="flex-shrink-0 w-[120px] h-[80px] bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/30 dark:to-green-900/30 rounded-lg flex items-center justify-center">
-            <span className="text-2xl opacity-50">🎮</span>
+          <div className="flex-shrink-0 w-full md:w-[120px] h-[160px] md:h-[80px] bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/30 dark:to-green-900/30 rounded-lg flex items-center justify-center">
+            <span className="text-2xl md:text-2xl opacity-50">🎮</span>
           </div>
         )}
         
         <div className="flex-1 min-w-0">
-          <div className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
+          <div className="text-lg md:text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
             {project.title}
           </div>
           

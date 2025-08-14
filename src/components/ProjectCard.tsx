@@ -10,23 +10,27 @@ export default function ProjectCard({ project }: { project: Project }) {
     >
       <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
         {project.cover ? (
-          <div className="flex-shrink-0 w-full md:w-auto">
-            <Image
-              src={project.cover}
-              alt={project.title}
-              width={120}
-              height={80}
-              className="rounded-lg object-cover group-hover:scale-105 transition-transform duration-300 w-full md:w-[120px] h-[160px] md:h-[80px]"
-            />
+          <div className="flex-shrink-0 w-full sm:w-48 md:w-32 lg:w-36">
+            <div className="relative aspect-square rounded-lg overflow-hidden">
+              <Image
+                src={project.cover}
+                alt={project.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 192px, (max-width: 1024px) 128px, 144px"
+              />
+            </div>
           </div>
         ) : (
-          <div className="flex-shrink-0 w-full md:w-[120px] h-[160px] md:h-[80px] bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/30 dark:to-green-900/30 rounded-lg flex items-center justify-center">
-            <span className="text-2xl md:text-2xl opacity-50">🎮</span>
+          <div className="flex-shrink-0 w-full sm:w-48 md:w-32 lg:w-36">
+            <div className="aspect-square bg-gradient-to-br from-blue-100 to-green-100 dark:from-blue-900/30 dark:to-green-900/30 rounded-lg flex items-center justify-center">
+              <span className="text-2xl md:text-3xl opacity-50">🎮</span>
+            </div>
           </div>
         )}
         
         <div className="flex-1 min-w-0">
-          <div className="text-lg md:text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
+          <div className="text-lg md:text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors font-poppins">
             {project.title}
           </div>
           
@@ -38,7 +42,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             }`}>
               {project.projectType === "professional" ? "Professional" : "Personal"}
             </span>
-            {project.year && (
+            {project.workPeriod ? (
+              <span className="text-sm opacity-70 font-medium">{project.workPeriod}</span>
+            ) : project.year && (
               <span className="text-sm opacity-70 font-medium">{project.year}</span>
             )}
           </div>

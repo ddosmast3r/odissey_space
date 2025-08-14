@@ -12,6 +12,7 @@ export type ProjectFrontmatter = {
   tools?: string[];
   year?: number;
   duration?: string;
+  workPeriod?: string;
   tags?: string[];
   cover?: string;
   gallery?: string[];

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects";
+import Pico8Player from "@/components/Pico8Player";
 
 export default function Home() {
   const projects = getAllProjects();
@@ -53,6 +54,15 @@ export default function Home() {
               )}
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mt-12 md:mt-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 font-poppins">PICO-8 Games</h2>
+        <div className="flex justify-center px-4">
+          <div className="w-full max-w-2xl">
+            <Pico8Player width={512} height={512} />
+          </div>
         </div>
       </section>
     </div>

@@ -18,7 +18,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold mb-6">Background</h2>
           <div className="space-y-4 text-lg opacity-90">
             <p>
-              I'm a dedicated game developer specializing in level design and technical implementation. 
+              I&apos;m a dedicated game developer specializing in level design and technical implementation. 
               My passion lies in crafting engaging gameplay experiences that challenge and delight players.
             </p>
             <p>
@@ -29,7 +29,7 @@ export default function AboutPage() {
         </div>
 
         <div>
-          <h2 className="text-2xl font-bold mb-6">Skills & Expertise</h2>
+          <h2 className="text-2xl font-bold mb-6">Skills &amp; Expertise</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h3 className="font-semibold mb-2 text-blue-600">Game Development</h3>
@@ -54,10 +54,10 @@ export default function AboutPage() {
       </div>
 
       <div className="text-center bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-8">
-        <h2 className="text-2xl font-bold mb-4">Let's Work Together</h2>
+        <h2 className="text-2xl font-bold mb-4">Let&apos;s Work Together</h2>
         <p className="text-lg opacity-80 mb-6 max-w-2xl mx-auto">
-          I'm always interested in new opportunities and collaborations. 
-          Whether it's a commercial project or an innovative experiment, let's create something amazing.
+          I&apos;m always interested in new opportunities and collaborations. 
+          Whether it&apos;s a commercial project or an innovative experiment, let&apos;s create something amazing.
         </p>
         <div className="flex justify-center gap-4">
           <a href="mailto:contact@odissey.space" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">

@@ -36,3 +36,38 @@ body {
     linear-gradient(90deg, rgba(0, 255, 127, 0.12) 1px, transparent 1px);
   background-size: 30px 30px;
 }
+
+/* Force PICO-8 canvas scaling - responsive */
+.pico8-player canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 512px !important;
+  max-height: 512px !important;
+  image-rendering: pixelated !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  display: block !important;
+  margin: 0 auto !important;
+  object-fit: fill !important;
+  background-color: black !important;
+}
+
+/* Touch control styles */
+.pico8-player button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text selection on touch controls */
+.pico8-player .select-none {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

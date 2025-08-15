@@ -47,7 +47,9 @@ export default function Home() {
                 <span className={`px-2 py-1 rounded text-xs ${p.projectType === "professional" ? "bg-blue-100 text-blue-700" : "bg-green-100 text-green-700"}`}>
                   {p.projectType === "professional" ? "Professional" : "Personal"}
                 </span>
-                {p.year && <span className="ml-2">{p.year}</span>}
+                {p.company && <span className="ml-2 font-medium">{p.company}</span>}
+                {p.workPeriod && <span className="ml-2">({p.workPeriod})</span>}
+                {!p.workPeriod && p.year && <span className="ml-2">({p.year})</span>}
               </div>
               {p.description && (
                 <p className="text-sm opacity-80">{p.description}</p>
@@ -58,9 +60,9 @@ export default function Home() {
       </section>
 
       <section className="mt-12 md:mt-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 font-poppins">PICO-8 Games</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 font-poppins">My PICO-8 Game</h2>
         <div className="flex justify-center px-4">
-          <div className="w-full max-w-2xl">
+          <div className="w-full max-w-lg mx-auto">
             <Pico8Player width={512} height={512} />
           </div>
         </div>

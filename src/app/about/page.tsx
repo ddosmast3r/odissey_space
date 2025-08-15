@@ -5,12 +5,86 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4">
-      <div className="text-center mb-16">
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid grid-cols-2 gap-8 items-start mb-16">
+        <div>
+          <h1 className="text-4xl font-bold mb-4">About Me</h1>
+          <p className="text-xl opacity-80 mb-8">
+            Passionate game developer and level designer with expertise in creating 
+            immersive gaming experiences.
+          </p>
+          <div className="space-y-4">
+            <a 
+              href="https://t.me/ddosmaster1" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold text-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-blue-600 hover:to-purple-700 relative overflow-hidden w-64"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10">Telegram</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-purple-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+            </a>
+            
+            <a 
+              href="#" 
+              className="group flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl font-semibold text-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-blue-900 relative overflow-hidden w-64"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10">LinkedIn</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+            </a>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <div className="relative group">
+            <img 
+              src="/images/me/0B0B74CA-AC27-43E7-B5A8-FAD343D9A46F_1_105_c.jpeg" 
+              alt="Profile photo" 
+              className="w-80 rounded-lg shadow-xl border-4 border-white dark:border-gray-800 transform transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="lg:hidden text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">About Me</h1>
-        <p className="text-xl opacity-80 max-w-2xl mx-auto">
+        <div className="flex justify-center mb-6">
+          <div className="relative group">
+            <img 
+              src="/images/me/0B0B74CA-AC27-43E7-B5A8-FAD343D9A46F_1_105_c.jpeg" 
+              alt="Profile photo" 
+              className="w-64 rounded-lg shadow-xl border-4 border-white dark:border-gray-800 transform transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        </div>
+        <p className="text-xl opacity-80 mb-8 max-w-lg mx-auto">
           Passionate game developer and level designer with expertise in creating 
           immersive gaming experiences.
         </p>
+        <div className="space-y-4 flex flex-col items-center">
+          <a 
+            href="https://t.me/ddosmaster1" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="group flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold text-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-blue-600 hover:to-purple-700 relative overflow-hidden w-64"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative z-10">Telegram</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-purple-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+          </a>
+          
+          <a 
+            href="#" 
+            className="group flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl font-semibold text-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-blue-900 relative overflow-hidden w-64"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative z-10">LinkedIn</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+          </a>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -59,11 +133,11 @@ export default function AboutPage() {
           I&apos;m always interested in new opportunities and collaborations. 
           Whether it&apos;s a commercial project or an innovative experiment, let&apos;s create something amazing.
         </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 flex-wrap">
           <a href="mailto:contact@odissey.space" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
             Get In Touch
           </a>
-          <a href="/resume.pdf" className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+          <a href="/cv/CV_RU.pdf" download="CV_RU.pdf" className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
             Download Resume
           </a>
         </div>

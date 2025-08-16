@@ -24,6 +24,13 @@ export default function Pico8Player({
   const [error, setError] = useState<string | null>(null);
   const [showMobileControls, setShowMobileControls] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
+  
+  // Joystick state
+  const [joystickPos, setJoystickPos] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [joystickTouchId, setJoystickTouchId] = useState<number | null>(null);
+  const joystickRef = useRef<HTMLDivElement>(null);
+  const knobRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile device
   useEffect(() => {
@@ -163,11 +170,13 @@ export default function Pico8Player({
   const handleTouchButton = (button: number) => {
     return {
       onTouchStart: (e: React.TouchEvent) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent scroll when touching buttons
+        e.stopPropagation();
         handleButtonPress(button);
       },
       onTouchEnd: (e: React.TouchEvent) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent scroll when releasing buttons
+        e.stopPropagation();
         handleButtonRelease(button);
       },
       onMouseDown: (e: React.MouseEvent) => {
@@ -184,6 +193,183 @@ export default function Pico8Player({
       }
     };
   };
+
+  // Joystick handlers
+  const getJoystickDistance = (x: number, y: number) => {
+    return Math.sqrt(x * x + y * y);
+  };
+
+  const normalizeJoystickPosition = (x: number, y: number, maxDistance: number) => {
+    const distance = getJoystickDistance(x, y);
+    if (distance <= maxDistance) {
+      return { x, y };
+    }
+    const angle = Math.atan2(y, x);
+    return {
+      x: Math.cos(angle) * maxDistance,
+      y: Math.sin(angle) * maxDistance
+    };
+  };
+
+  const updateDirectionalInput = useCallback((x: number, y: number) => {
+    const threshold = 0.3;
+    const maxDistance = 50;
+    
+    // Normalize position
+    const normalizedX = x / maxDistance;
+    const normalizedY = y / maxDistance;
+    
+    // Determine which buttons should be pressed
+    const shouldPressLeft = normalizedX < -threshold;
+    const shouldPressRight = normalizedX > threshold;
+    const shouldPressUp = normalizedY < -threshold;
+    const shouldPressDown = normalizedY > threshold;
+    
+    if (typeof window !== 'undefined' && window.PicoPress && window.PicoRelease && isLoaded) {
+      try {
+        // Handle horizontal movement
+        if (shouldPressLeft && !shouldPressRight) {
+          window.PicoRelease(1, 0); // Release Right
+          window.PicoPress(0, 0);   // Press Left
+        } else if (shouldPressRight && !shouldPressLeft) {
+          window.PicoRelease(0, 0); // Release Left
+          window.PicoPress(1, 0);   // Press Right
+        } else {
+          window.PicoRelease(0, 0); // Release Left
+          window.PicoRelease(1, 0); // Release Right
+        }
+        
+        // Handle vertical movement
+        if (shouldPressUp && !shouldPressDown) {
+          window.PicoRelease(3, 0); // Release Down
+          window.PicoPress(2, 0);   // Press Up
+        } else if (shouldPressDown && !shouldPressUp) {
+          window.PicoRelease(2, 0); // Release Up
+          window.PicoPress(3, 0);   // Press Down
+        } else {
+          window.PicoRelease(2, 0); // Release Up
+          window.PicoRelease(3, 0); // Release Down
+        }
+      } catch (err) {
+        // Ignore errors
+      }
+    }
+  }, [isLoaded]);
+
+  const handleJoystickMove = useCallback((clientX: number, clientY: number) => {
+    if (!joystickRef.current || !isDragging) return;
+    
+    const rect = joystickRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const deltaX = clientX - centerX;
+    const deltaY = clientY - centerY;
+    
+    const maxDistance = 50;
+    const normalized = normalizeJoystickPosition(deltaX, deltaY, maxDistance);
+    
+    setJoystickPos(normalized);
+    updateDirectionalInput(normalized.x, normalized.y);
+  }, [isDragging, updateDirectionalInput]);
+
+  const handleJoystickStart = useCallback((clientX: number, clientY: number) => {
+    setIsDragging(true);
+    handleJoystickMove(clientX, clientY);
+  }, [handleJoystickMove]);
+
+  const handleJoystickEnd = useCallback(() => {
+    setIsDragging(false);
+    setJoystickPos({ x: 0, y: 0 });
+    
+    // Release all directional buttons
+    if (typeof window !== 'undefined' && window.PicoRelease && isLoaded) {
+      [0, 1, 2, 3].forEach(btn => {
+        try {
+          window.PicoRelease(btn, 0);
+        } catch (err) {
+          // Ignore errors
+        }
+      });
+    }
+  }, [isLoaded]);
+
+  // Mouse events for joystick
+  const handleJoystickMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleJoystickStart(e.clientX, e.clientY);
+  };
+
+  const handleJoystickMouseMove = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+    handleJoystickMove(e.clientX, e.clientY);
+  }, [handleJoystickMove]);
+
+  const handleJoystickMouseUp = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+    handleJoystickEnd();
+  }, [handleJoystickEnd]);
+
+  // Touch events for joystick
+  const handleJoystickTouchStart = (e: React.TouchEvent) => {
+    if (joystickTouchId !== null) return; // Already tracking a touch
+    
+    const touch = e.touches[0];
+    e.preventDefault(); // Prevent scroll when starting joystick interaction
+    e.stopPropagation();
+    setJoystickTouchId(touch.identifier);
+    handleJoystickStart(touch.clientX, touch.clientY);
+  };
+
+  const handleJoystickTouchMove = useCallback((e: TouchEvent) => {
+    if (joystickTouchId === null) return;
+    
+    // Find the specific touch we're tracking
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches[i];
+      if (touch.identifier === joystickTouchId) {
+        e.preventDefault(); // Prevent scroll only when moving joystick
+        handleJoystickMove(touch.clientX, touch.clientY);
+        break;
+      }
+    }
+  }, [handleJoystickMove, joystickTouchId]);
+
+  const handleJoystickTouchEnd = useCallback((e: TouchEvent) => {
+    if (joystickTouchId === null) return;
+    
+    // Check if our tracked touch ended
+    let ourTouchEnded = true;
+    for (let i = 0; i < e.touches.length; i++) {
+      const touch = e.touches[i];
+      if (touch.identifier === joystickTouchId) {
+        ourTouchEnded = false;
+        break;
+      }
+    }
+    
+    if (ourTouchEnded) {
+      setJoystickTouchId(null);
+      handleJoystickEnd();
+    }
+  }, [handleJoystickEnd, joystickTouchId]);
+
+  // Global event listeners for mouse/touch move and end
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleJoystickMouseMove);
+      document.addEventListener('mouseup', handleJoystickMouseUp);
+      document.addEventListener('touchmove', handleJoystickTouchMove, { passive: false });
+      document.addEventListener('touchend', handleJoystickTouchEnd);
+      
+      return () => {
+        document.removeEventListener('mousemove', handleJoystickMouseMove);
+        document.removeEventListener('mouseup', handleJoystickMouseUp);
+        document.removeEventListener('touchmove', handleJoystickTouchMove);
+        document.removeEventListener('touchend', handleJoystickTouchEnd);
+      };
+    }
+  }, [isDragging, handleJoystickMouseMove, handleJoystickMouseUp, handleJoystickTouchMove, handleJoystickTouchEnd]);
 
   return (
     <div className="pico8-player bg-black p-4 rounded-lg">
@@ -228,87 +414,79 @@ export default function Pico8Player({
           />
         )}
         
-        {isLoaded && !showMobileControls && isStarted && (
-          <div className="mt-4 text-xs text-gray-400">
-            <p>Controls: Arrow keys to move, Z/X for buttons</p>
-            <p>Press Enter for menu, P to pause</p>
-          </div>
-        )}
-
-        {/* Mobile Touch Controls */}
-        {showMobileControls && isLoaded && isStarted && (
+        {/* Touch Controls - Mobile Only */}
+        {isLoaded && isStarted && showMobileControls && (
           <div className="mt-6">
-            <div className="flex justify-between items-center max-w-sm mx-auto">
-              {/* D-Pad */}
+            <div className="flex justify-between items-center max-w-md mx-auto px-4">
+              {/* Virtual Joystick */}
               <div className="relative">
-                <div className="grid grid-cols-3 gap-1 w-36 h-36">
-                  <div></div>
-                  <button
-                    className="bg-gradient-to-b from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 active:from-gray-800 active:to-gray-900 text-white font-bold rounded-lg select-none shadow-lg border-2 border-gray-500 flex items-center justify-center text-xl"
-                    {...handleTouchButton(2)} // Up
-                  >
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 4l-8 8h6v8h4v-8h6z"/>
-                    </svg>
-                  </button>
-                  <div></div>
-                  <button
-                    className="bg-gradient-to-b from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 active:from-gray-800 active:to-gray-900 text-white font-bold rounded-lg select-none shadow-lg border-2 border-gray-500 flex items-center justify-center text-xl"
-                    {...handleTouchButton(0)} // Left
-                  >
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M4 12l8-8v6h8v4h-8v6z"/>
-                    </svg>
-                  </button>
-                  <div className="bg-gray-800 rounded-lg border-2 border-gray-600"></div>
-                  <button
-                    className="bg-gradient-to-b from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 active:from-gray-800 active:to-gray-900 text-white font-bold rounded-lg select-none shadow-lg border-2 border-gray-500 flex items-center justify-center text-xl"
-                    {...handleTouchButton(1)} // Right
-                  >
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20 12l-8 8v-6H4v-4h8V4z"/>
-                    </svg>
-                  </button>
-                  <div></div>
-                  <button
-                    className="bg-gradient-to-b from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 active:from-gray-800 active:to-gray-900 text-white font-bold rounded-lg select-none shadow-lg border-2 border-gray-500 flex items-center justify-center text-xl"
-                    {...handleTouchButton(3)} // Down
-                  >
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 20l8-8h-6V4h-4v8H4z"/>
-                    </svg>
-                  </button>
-                  <div></div>
+                <div 
+                  ref={joystickRef}
+                  className="relative w-28 h-28 bg-gradient-to-b from-gray-700 to-gray-800 rounded-full border-4 border-gray-600 shadow-xl cursor-pointer select-none flex items-center justify-center"
+                  onMouseDown={handleJoystickMouseDown}
+                  onTouchStart={handleJoystickTouchStart}
+                  style={{
+                    touchAction: 'none',
+                    background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), rgba(0,0,0,0.3))',
+                    boxShadow: 'inset 0 4px 8px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3)'
+                  }}
+                >
+                  {/* Joystick Knob */}
+                  <div
+                    ref={knobRef}
+                    className="absolute w-10 h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full border-2 border-blue-300 shadow-lg transition-all duration-75 ease-out"
+                    style={{
+                      transform: `translate(${joystickPos.x}px, ${joystickPos.y}px)`,
+                      background: isDragging 
+                        ? 'radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 1), rgba(29, 78, 216, 1))' 
+                        : 'radial-gradient(circle at 30% 30%, rgba(96, 165, 250, 1), rgba(59, 130, 246, 1))',
+                      boxShadow: isDragging 
+                        ? 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 8px rgba(59, 130, 246, 0.5)' 
+                        : 'inset 0 2px 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.3)',
+                      scale: isDragging ? '0.95' : '1'
+                    }}
+                  />
+                  
+                  {/* Center dot for reference */}
+                  <div className="absolute w-1.5 h-1.5 bg-gray-500 rounded-full opacity-30" />
+                  
+                  {/* Directional indicators */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-1.5 left-1/2 transform -translate-x-1/2 text-gray-400 text-xs">↑</div>
+                    <div className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 text-gray-400 text-xs">↓</div>
+                    <div className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">←</div>
+                    <div className="absolute right-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">→</div>
+                  </div>
                 </div>
               </div>
 
               {/* Action Buttons - Diagonal Layout */}
-              <div className="relative w-40 h-40">
+              <div className="relative w-32 h-32">
                 <button
-                  className="group absolute top-0 left-18 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 active:from-blue-800 active:to-blue-900 text-white font-bold w-20 h-20 rounded-full select-none shadow-xl border-4 border-blue-400 hover:border-blue-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
+                  className="group absolute top-0 left-12 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 active:from-blue-800 active:to-blue-900 text-white font-bold w-16 h-16 rounded-full select-none shadow-xl border-4 border-blue-400 hover:border-blue-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
                   {...handleTouchButton(5)} // X button
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full"></div>
-                  <span className="font-pixel font-black text-4xl relative z-10 text-center ml-1 mt-px">X</span>
+                  <span className="font-pixel font-black text-2xl relative z-10 text-center ml-1 mt-px">X</span>
                   <div className="absolute inset-0 bg-blue-400/30 opacity-0 group-active:opacity-100 transition-opacity duration-100 rounded-full"></div>
                 </button>
                 <button
-                  className="group absolute bottom-0 right-3 bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 active:from-green-800 active:to-green-900 text-white font-bold w-20 h-20 rounded-full select-none shadow-xl border-4 border-green-400 hover:border-green-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
+                  className="group absolute bottom-0 right-1 bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 active:from-green-800 active:to-green-900 text-white font-bold w-16 h-16 rounded-full select-none shadow-xl border-4 border-green-400 hover:border-green-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
                   {...handleTouchButton(4)} // Z button
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full"></div>
-                  <span className="font-pixel font-black text-4xl relative z-10 text-center ml-1 mt-px">Z</span>
+                  <span className="font-pixel font-black text-2xl relative z-10 text-center ml-1 mt-px">Z</span>
                   <div className="absolute inset-0 bg-green-400/30 opacity-0 group-active:opacity-100 transition-opacity duration-100 rounded-full"></div>
                 </button>
               </div>
             </div>
 
             <div className="mt-4 text-xs text-gray-400 text-center">
-              <p>D-Pad: Move • Z: Action/Jump • X: Secondary Action</p>
-              <p>Tap and hold for continuous input</p>
+              <p>Joystick: Move • Z: Action/Jump • X: Secondary Action</p>
             </div>
           </div>
         )}
+
       </div>
     </div>
   );

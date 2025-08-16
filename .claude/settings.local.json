@@ -8,7 +8,10 @@
       "WebSearch",
       "Bash(taskkill:*)",
       "WebFetch(domain:www.lexaloffle.com)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(wsl ss:*)",
+      "Bash(wsl netstat:*)",
+      "Bash(wsl cat:*)"
     ],
     "deny": [],
     "ask": []

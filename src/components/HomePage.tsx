@@ -17,7 +17,7 @@ export default function HomePage({ featured }: HomePageProps) {
 
   return (
     <div className="max-w-4xl mx-auto py-8 md:py-16 px-4">
-      <div className="text-center mb-12 md:mb-16">
+      <div className="text-center mb-8 md:mb-12">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-pixel relative">
           <span className="relative z-10 bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent matrix-text-glow">
             {t('home.title')}
@@ -26,6 +26,9 @@ export default function HomePage({ featured }: HomePageProps) {
             {t('home.title')}
           </span>
         </h1>
+      </div>
+
+      <div className="text-center mb-8 md:mb-12">
         <AnimatedSubtitle />
       </div>
       

@@ -37,6 +37,335 @@ body {
   background-size: 30px 30px;
 }
 
+/* Animated glow effects */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes glow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.title-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.title-glow-delayed {
+  animation: glow-pulse 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.title-gradient {
+  background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+  background-size: 400% 400%;
+  animation: glow-shift 4s ease infinite;
+}
+
+/* Frosted glass effect for project cards */
+.frosted-glass {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  position: relative;
+}
+
+.dark .frosted-glass {
+  background: rgba(15, 15, 15, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.frosted-glass:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.dark .frosted-glass:hover {
+  background: rgba(15, 15, 15, 0.85);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Settings menu with frosted glass effect */
+.settings-menu {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Settings menu animations */
+.settings-menu-enter {
+  opacity: 0;
+  transform: scale(0.95) translateY(-8px);
+}
+
+.settings-menu-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.settings-menu-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.settings-menu-exit-active {
+  opacity: 0;
+  transform: scale(0.95) translateY(-8px);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+
+/* Animated subtitle transitions */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+@keyframes flipIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes flipOut {
+  0% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.word-enter {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.word-exit {
+  animation: slideDown 0.3s ease-in forwards;
+}
+
+/* Additional transform utilities for 3D effects */
+.rotateX-90 {
+  transform: rotateX(90deg);
+}
+
+.rotateX-0 {
+  transform: rotateX(0deg);
+}
+
+/* Matrix-style navigation indicator */
+.matrix-glow {
+  box-shadow: 
+    0 0 5px #00ff41,
+    0 0 10px #00ff41,
+    0 0 15px #00ff41,
+    0 0 20px #00ff41;
+  animation: matrix-pulse 2s ease-in-out infinite alternate;
+  border-radius: 2px;
+  transform-origin: left center;
+}
+
+@keyframes matrix-pulse {
+  0% {
+    box-shadow: 
+      0 0 5px #00ff41,
+      0 0 10px #00ff41,
+      0 0 15px #00ff41,
+      0 0 20px #00ff41;
+    opacity: 0.8;
+  }
+  100% {
+    box-shadow: 
+      0 0 8px #00ff41,
+      0 0 16px #00ff41,
+      0 0 24px #00ff41,
+      0 0 32px #00ff41;
+    opacity: 1;
+  }
+}
+
+/* Matrix green color variants */
+.matrix-green {
+  color: #00ff41;
+}
+
+.matrix-green-bg {
+  background-color: #00ff41;
+}
+
+.matrix-text-glow {
+  text-shadow: 
+    0 0 2px rgba(0, 255, 65, 0.1),
+    0 0 4px rgba(0, 255, 65, 0.05);
+  animation: matrix-text-pulse 4s ease-in-out infinite alternate;
+}
+
+.light .matrix-text-glow {
+  text-shadow: 
+    0 0 1px rgba(0, 200, 50, 0.3),
+    0 0 3px rgba(0, 200, 50, 0.15);
+}
+
+@keyframes matrix-text-pulse {
+  0% {
+    text-shadow: 
+      0 0 2px rgba(0, 255, 65, 0.1),
+      0 0 4px rgba(0, 255, 65, 0.05);
+  }
+  100% {
+    text-shadow: 
+      0 0 3px rgba(0, 255, 65, 0.15),
+      0 0 6px rgba(0, 255, 65, 0.08);
+  }
+}
+
+.light .matrix-text-glow {
+  animation: matrix-text-pulse-light 4s ease-in-out infinite alternate;
+}
+
+@keyframes matrix-text-pulse-light {
+  0% {
+    text-shadow: 
+      0 0 1px rgba(0, 200, 50, 0.3),
+      0 0 3px rgba(0, 200, 50, 0.15);
+  }
+  100% {
+    text-shadow: 
+      0 0 2px rgba(0, 200, 50, 0.4),
+      0 0 4px rgba(0, 200, 50, 0.2);
+  }
+}
+
+/* Force consistent font for navigation */
+nav.font-poppins a {
+  font-family: var(--font-poppins), var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text wrapping on small screens */
+nav a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Smaller text on very small screens */
+@media (max-width: 375px) {
+  nav.md\:hidden {
+    gap: 1px !important;
+  }
+  
+  nav.md\:hidden a {
+    font-size: 0.75rem !important; /* 12px */
+    padding: 0.25rem !important;
+  }
+}
+
+/* Ripple effect for buttons */
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.5s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
 /* Force PICO-8 canvas scaling - responsive */
 .pico8-player canvas {
   width: 100% !important;

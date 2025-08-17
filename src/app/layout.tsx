@@ -3,17 +3,19 @@ import Link from "next/link";
 import { Inter, Roboto_Mono, Press_Start_2P, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../contexts/ThemeContext";
-import ThemeToggle from "../components/ThemeToggle";
+import { LanguageProvider } from "../contexts/LanguageContext";
+import SettingsMenu from "../components/SettingsMenu";
+import Navigation from "../components/Navigation";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const robotoMono = Roboto_Mono({
   weight: ["400", "500"],
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-roboto-mono",
   display: "swap",
 });
@@ -27,7 +29,7 @@ const pixelFont = Press_Start_2P({
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -43,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${poppins.variable} antialiased`}
       >
@@ -52,9 +54,24 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  const savedTheme = localStorage.getItem('theme') || 'dark';
-                  if (savedTheme === 'dark') {
-                    document.documentElement.classList.add('dark');
+                  // Set default theme first
+                  document.documentElement.classList.add('dark');
+                  
+                  var savedTheme = localStorage.getItem('theme');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+                  
+                  if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                  }
+                  
+                  // Preload language setting to prevent hydration mismatch
+                  var savedLanguage = localStorage.getItem('language');
+                  if (!savedLanguage) {
+                    var browserLanguage = navigator.language.toLowerCase();
+                    var detectedLanguage = browserLanguage.startsWith('ru') ? 'ru' : 'en';
+                    localStorage.setItem('language', detectedLanguage);
                   }
                 } catch (e) {
                   document.documentElement.classList.add('dark');
@@ -64,27 +81,15 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>
-          <header className="bg-black border-b border-gray-700 z-50">
-            <div className="max-w-4xl mx-auto p-4 flex justify-between items-center">
-              {/* Desktop Navigation */}
-              <nav className="hidden md:flex gap-6 lg:gap-8 text-base lg:text-lg font-medium font-poppins">
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors duration-200">Home</Link>
-                <Link href="/projects/professional" className="text-gray-300 hover:text-white transition-colors duration-200">Professional</Link>
-                <Link href="/projects/personal" className="text-gray-300 hover:text-white transition-colors duration-200">Personal</Link>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors duration-200">About Me</Link>
-              </nav>
-              
-              {/* Mobile Navigation */}
-              <nav className="md:hidden flex gap-4 text-sm font-medium font-poppins">
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors duration-200">Home</Link>
-                <Link href="/projects/professional" className="text-gray-300 hover:text-white transition-colors duration-200">Work</Link>
-                <Link href="/projects/personal" className="text-gray-300 hover:text-white transition-colors duration-200">Personal</Link>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors duration-200">About Me</Link>
-              </nav>
-              <ThemeToggle />
-            </div>
-          </header>
-          <main>{children}</main>
+          <LanguageProvider>
+            <header className="bg-black border-b border-gray-700 z-50">
+              <div className="max-w-4xl mx-auto p-4 flex justify-between items-center">
+                <Navigation />
+                <SettingsMenu />
+              </div>
+            </header>
+            <main>{children}</main>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

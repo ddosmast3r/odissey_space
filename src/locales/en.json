@@ -46,7 +46,7 @@
     "workingOn": "Currently working on some exciting experiments!"
   },
   "about": {
-    "title": "About Me",
+    "title": "About",
     "description": "Passionate game developer and level designer with expertise in creating immersive gaming experiences.",
     "background": "Background",
     "backgroundText1": "I'm a dedicated game developer specializing in level design and technical implementation. My passion lies in crafting engaging gameplay experiences that challenge and delight players.",
@@ -54,6 +54,9 @@
     "skillsTitle": "Skills & Expertise",
     "gameDevTitle": "Game Development",
     "technicalTitle": "Technical Skills",
+    "educationTitle": "Education",
+    "educationUniversity": "SUAI, Saint Petersburg",
+    "educationDegree": "Business Informatics, Bachelor's Degree (2018-2022)",
     "workTogether": "Let's Work Together",
     "workTogetherText": "I'm always interested in new opportunities and collaborations. Whether it's a commercial project or an innovative experiment, let's create something amazing.",
     "getInTouch": "Get In Touch",

@@ -13,7 +13,8 @@
       "Bash(wsl netstat:*)",
       "Bash(wsl cat:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(cmd /c:*)"
     ],
     "deny": [],
     "ask": []

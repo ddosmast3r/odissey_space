@@ -75,11 +75,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   if (!mounted) {
-    return (
-      <LanguageContext.Provider value={{ language, setLanguage, t }}>
-        {children}
-      </LanguageContext.Provider>
-    );
+    return null;
   }
 
   return (

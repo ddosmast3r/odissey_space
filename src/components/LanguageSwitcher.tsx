@@ -1,13 +1,11 @@
 'use client';
 
 import { useLanguage, Language } from '@/contexts/LanguageContext';
+import { useLanguageToggle } from '@/hooks/useLanguageToggle';
 
 export default function LanguageSwitcher() {
-  const { language, setLanguage, t } = useLanguage();
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ru' : 'en');
-  };
+  const { language, t } = useLanguage();
+  const toggleLanguage = useLanguageToggle();
 
   return (
     <button

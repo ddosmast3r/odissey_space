@@ -10,7 +10,7 @@ export type ProjectFrontmatter = {
   primaryDiscipline?: string;
   engine?: string;
   tools?: string[];
-  year?: number;
+  year?: string;
   duration?: string;
   workPeriod?: string;
   tags?: string[];
@@ -53,7 +53,7 @@ export function getAllProjects(): Project[] {
       const description = fm.description || content.slice(0, 200) + "...";
       return { ...fm, slug, content, description } as Project;
     })
-    .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+    .sort((a, b) => parseInt(b.year ?? '0') - parseInt(a.year ?? '0'));
 }
 
 export function getProjectBySlug(slug: string): Project | null {

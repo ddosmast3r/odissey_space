@@ -11,7 +11,9 @@
       "Bash(curl:*)",
       "Bash(wsl ss:*)",
       "Bash(wsl netstat:*)",
-      "Bash(wsl cat:*)"
+      "Bash(wsl cat:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)"
     ],
     "deny": [],
     "ask": []

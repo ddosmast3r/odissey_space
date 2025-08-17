@@ -8,14 +8,14 @@ import SettingsMenu from "../components/SettingsMenu";
 import Navigation from "../components/Navigation";
 
 const inter = Inter({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const robotoMono = Roboto_Mono({
   weight: ["400", "500"],
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   variable: "--font-roboto-mono",
   display: "swap",
 });
@@ -29,7 +29,7 @@ const pixelFont = Press_Start_2P({
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -82,7 +82,7 @@ export default function RootLayout({
         />
         <ThemeProvider>
           <LanguageProvider>
-            <header className="bg-black border-b border-gray-700 z-50">
+            <header className="bg-black border-b border-green-400/40 z-50">
               <div className="max-w-4xl mx-auto p-4 flex justify-between items-center">
                 <Navigation />
                 <SettingsMenu />

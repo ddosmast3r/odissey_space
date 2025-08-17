@@ -385,7 +385,7 @@ export default function Pico8Player({
         
         {!isStarted ? (
           <div
-            className="border-2 border-blue-600 rounded-lg mx-auto bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 w-full max-w-full aspect-square flex items-center justify-center shadow-xl"
+            className="border-2 border-green-400 rounded-lg mx-auto bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 w-full max-w-full aspect-square flex items-center justify-center shadow-xl"
             style={{ 
               maxWidth: `${width}px`, 
               maxHeight: `${height}px`,
@@ -404,7 +404,7 @@ export default function Pico8Player({
         ) : (
           <div
             ref={containerRef}
-            className="border-2 border-blue-600 rounded-lg mx-auto bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 w-full max-w-full aspect-square shadow-xl"
+            className="border-2 border-green-400 rounded-lg mx-auto bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 w-full max-w-full aspect-square shadow-xl"
             style={{ 
               maxWidth: `${width}px`, 
               maxHeight: `${height}px`,
@@ -436,14 +436,14 @@ export default function Pico8Player({
                   {/* Joystick Knob */}
                   <div
                     ref={knobRef}
-                    className="absolute w-10 h-10 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full border-2 border-blue-300 shadow-lg transition-all duration-75 ease-out"
+                    className="absolute w-10 h-10 bg-gradient-to-b from-green-400 to-green-600 rounded-full border-2 border-green-300 shadow-lg transition-all duration-75 ease-out"
                     style={{
                       transform: `translate(${joystickPos.x}px, ${joystickPos.y}px)`,
                       background: isDragging 
-                        ? 'radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 1), rgba(29, 78, 216, 1))' 
-                        : 'radial-gradient(circle at 30% 30%, rgba(96, 165, 250, 1), rgba(59, 130, 246, 1))',
+                        ? 'radial-gradient(circle at 30% 30%, rgba(34, 197, 94, 1), rgba(22, 163, 74, 1))' 
+                        : 'radial-gradient(circle at 30% 30%, rgba(74, 222, 128, 1), rgba(34, 197, 94, 1))',
                       boxShadow: isDragging 
-                        ? 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 8px rgba(59, 130, 246, 0.5)' 
+                        ? 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 8px rgba(34, 197, 94, 0.5)' 
                         : 'inset 0 2px 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.3)',
                       scale: isDragging ? '0.95' : '1'
                     }}
@@ -465,20 +465,20 @@ export default function Pico8Player({
               {/* Action Buttons - Diagonal Layout */}
               <div className="relative w-32 h-32">
                 <button
-                  className="group absolute top-0 left-12 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 active:from-blue-800 active:to-blue-900 text-white font-bold w-16 h-16 rounded-full select-none shadow-xl border-4 border-blue-400 hover:border-blue-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
+                  className="group absolute top-0 left-12 bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 active:from-green-800 active:to-green-900 text-white font-bold w-16 h-16 rounded-full select-none shadow-xl border-4 border-green-400 hover:border-green-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
                   {...handleTouchButton(5)} // X button
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full"></div>
                   <span className="font-pixel font-black text-2xl relative z-10 text-center ml-1 mt-px">X</span>
-                  <div className="absolute inset-0 bg-blue-400/30 opacity-0 group-active:opacity-100 transition-opacity duration-100 rounded-full"></div>
+                  <div className="absolute inset-0 bg-green-400/30 opacity-0 group-active:opacity-100 transition-opacity duration-100 rounded-full"></div>
                 </button>
                 <button
-                  className="group absolute bottom-0 right-1 bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 active:from-green-800 active:to-green-900 text-white font-bold w-16 h-16 rounded-full select-none shadow-xl border-4 border-green-400 hover:border-green-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
+                  className="group absolute bottom-0 right-1 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 active:from-blue-800 active:to-blue-900 text-white font-bold w-16 h-16 rounded-full select-none shadow-xl border-4 border-blue-400 hover:border-blue-300 flex items-center justify-center transform transition-all duration-200 hover:scale-110 active:scale-95 relative overflow-hidden"
                   {...handleTouchButton(4)} // Z button
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full"></div>
                   <span className="font-pixel font-black text-2xl relative z-10 text-center ml-1 mt-px">Z</span>
-                  <div className="absolute inset-0 bg-green-400/30 opacity-0 group-active:opacity-100 transition-opacity duration-100 rounded-full"></div>
+                  <div className="absolute inset-0 bg-blue-400/30 opacity-0 group-active:opacity-100 transition-opacity duration-100 rounded-full"></div>
                 </button>
               </div>
             </div>

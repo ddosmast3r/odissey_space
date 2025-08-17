@@ -30,7 +30,7 @@ export default function AnimatedSubtitle() {
   }, [currentWords.length]);
 
   return (
-    <p className="text-lg md:text-xl opacity-80 mb-6 md:mb-8 font-poppins">
+    <p className="text-xl md:text-2xl lg:text-3xl font-bold opacity-90 mb-6 md:mb-8 font-poppins">
       <span 
         className={`inline-block transition-opacity duration-500 ${
           isAnimating ? 'opacity-0' : 'opacity-100'

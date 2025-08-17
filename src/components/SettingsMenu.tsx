@@ -3,11 +3,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguageToggle } from '@/hooks/useLanguageToggle';
 
 export default function SettingsMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const toggleLanguage = useLanguageToggle();
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Close menu when clicking outside
@@ -26,10 +28,6 @@ export default function SettingsMenu() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ru' : 'en');
-  };
 
   return (
     <div className="relative" ref={menuRef}>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Pico8PlayerProps {
   width?: number;
@@ -19,6 +20,7 @@ export default function Pico8Player({
   width = 512, 
   height = 512 
 }: Pico8PlayerProps) {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -395,7 +397,7 @@ export default function Pico8Player({
               className="group relative bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-pixel border-2 border-green-400 hover:border-green-300"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-              <span className="relative z-10">PLAY</span>
+              <span className="relative z-10">{t('pico8.play')}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400/30 to-emerald-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl rounded-xl"></div>
             </button>
           </div>
@@ -482,7 +484,7 @@ export default function Pico8Player({
             </div>
 
             <div className="mt-4 text-xs text-gray-400 text-center">
-              <p>Joystick: Move • Z: Action/Jump • X: Secondary Action</p>
+              <p>{t('pico8.joystick')} • {t('pico8.controls')}</p>
             </div>
           </div>
         )}

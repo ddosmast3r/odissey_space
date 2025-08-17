@@ -1,9 +1,23 @@
 'use client';
 
 import { useTheme } from '../contexts/ThemeContext';
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button className="p-2 rounded-md border border-gray-600 hover:bg-gray-800 transition-colors">
+        <div className="w-5 h-5" />
+      </button>
+    );
+  }
 
   return (
     <button

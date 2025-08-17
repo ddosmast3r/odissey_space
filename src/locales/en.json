@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "odissey.space",
+    "subtitle": "Level / Game / Technical Design Portfolio",
+    "description": "Explore my journey through game development, level design, and technical innovation. From professional projects to personal experiments.",
+    "professionalProjects": "Professional Projects",
+    "professionalDesc": "Commercial games and client work",
+    "personalProjects": "Personal Projects",
+    "personalDesc": "Experiments and passion projects",
+    "allProjects": "All Projects",
+    "allProjectsDesc": "Complete portfolio overview",
+    "aboutMe": "About Me",
+    "aboutMeDesc": "My story and expertise",
+    "featuredProjects": "Featured Projects",
+    "picoGame": "My PICO-8 Game"
+  },
+  "projectsPage": {
+    "title": "My Projects",
+    "professional": "Professional",
+    "personal": "Personal",
+    "viewAll": "View All Projects",
+    "workShort": "Work",
+    "personalShort": "Personal"
+  },
+  "pico8": {
+    "joystick": "Joystick: Move",
+    "controls": "Z: Action/Jump • X: Secondary Action",
+    "play": "PLAY"
+  },
+  "professionalPage": {
+    "title": "Professional Projects",
+    "description": "Commercial games, client work, and professional collaborations showcasing my expertise in game development and level design.",
+    "noProjects": "No professional projects yet.",
+    "checkBack": "Check back soon for updates!"
+  },
+  "personalPage": {
+    "title": "Personal Projects",
+    "description": "Passion projects, experiments, and creative explorations where I push boundaries and explore new ideas in game design and development.",
+    "noProjects": "No personal projects yet.",
+    "workingOn": "Currently working on some exciting experiments!"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Passionate game developer and level designer with expertise in creating immersive gaming experiences.",
+    "background": "Background",
+    "backgroundText1": "I'm a dedicated game developer specializing in level design and technical implementation. My passion lies in crafting engaging gameplay experiences that challenge and delight players.",
+    "backgroundText2": "With experience in both professional and personal projects, I bring creativity and technical expertise to every challenge I tackle.",
+    "skillsTitle": "Skills & Expertise",
+    "gameDevTitle": "Game Development",
+    "technicalTitle": "Technical Skills",
+    "workTogether": "Let's Work Together",
+    "workTogetherText": "I'm always interested in new opportunities and collaborations. Whether it's a commercial project or an innovative experiment, let's create something amazing.",
+    "getInTouch": "Get In Touch",
+    "downloadResume": "Download Resume"
+  },
+  "projectCard": {
+    "company": "Company",
+    "period": "Period",
+    "year": "Year",
+    "role": "Role",
+    "teamSize": "Team Size",
+    "technologies": "Technologies",
+    "viewDetails": "View Details"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "language": "Language"
+  },
+  "projects": {
+    "sherlock": {
+      "title": "Sherlock: Hidden Match-3 Cases",
+      "description": "Level Designer & Technical Designer for a successful mobile mystery game combining match-3 puzzles with hidden object gameplay"
+    },
+    "empire": {
+      "title": "Empire of Vampire",
+      "description": "Technical Designer working on backend configurations, actor systems, and quest mechanics for a vampire-themed mobile strategy game"
+    },
+    "stint": {
+      "title": "Stint: Rift Apart",
+      "description": "My first commercial project as Level Designer and Technical Designer, creating 40+ locations and implementing enemy AI logic"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Главная",
+    "about": "О себе",
+    "projects": "Проекты",
+    "contact": "Контакты"
+  },
+  "home": {
+    "title": "odissey.space",
+    "subtitle": "Level / Game / Technical Design Portfolio",
+    "description": "Исследуйте мой путь в разработке игр, level design и технических инновациях. От рабочих проектов до личных экспериментов.",
+    "professionalProjects": "Рабочие проекты",
+    "professionalDesc": "Коммерческие игры и клиентская работа",
+    "personalProjects": "Личные проекты",
+    "personalDesc": "Эксперименты и проекты по душе",
+    "allProjects": "Все проекты",
+    "allProjectsDesc": "Полный обзор портфолио",
+    "aboutMe": "Обо мне",
+    "aboutMeDesc": "Моя история и экспертиза",
+    "featuredProjects": "Избранные проекты",
+    "picoGame": "Моя игра на PICO-8"
+  },
+  "projectsPage": {
+    "title": "Мои проекты",
+    "professional": "Рабочие",
+    "personal": "Личные",
+    "viewAll": "Посмотреть все проекты",
+    "workShort": "Работа",
+    "personalShort": "Личные"
+  },
+  "pico8": {
+    "joystick": "Джойстик: Движение",
+    "controls": "Z: Действие/Прыжок • X: Дополнительное действие",
+    "play": "ИГРАТЬ"
+  },
+  "professionalPage": {
+    "title": "Рабочие проекты",
+    "description": "Коммерческие игры, клиентская работа и профессиональные коллаборации, демонстрирующие мой опыт в разработке игр и level design.",
+    "noProjects": "Пока нет рабочих проектов.",
+    "checkBack": "Скоро появятся обновления!"
+  },
+  "personalPage": {
+    "title": "Личные проекты",
+    "description": "Проекты по душе, эксперименты и творческие исследования, где я раздвигаю границы и изучаю новые идеи в game design и разработке.",
+    "noProjects": "Пока нет личных проектов.",
+    "workingOn": "Сейчас работаю над интересными экспериментами!"
+  },
+  "about": {
+    "title": "Обо мне",
+    "description": "Увлеченный game developer и level designer с опытом создания захватывающих игровых миров.",
+    "background": "О себе",
+    "backgroundText1": "Я целеустремленный game developer, специализирующийся на level design и технической реализации. Моя страсть - создание увлекательного геймплея, который бросает вызов и радует игроков.",
+    "backgroundText2": "Имея опыт как в рабочих, так и в личных проектах, я привношу креативность и техническую экспертизу в каждую задачу, которую решаю.",
+    "skillsTitle": "Навыки и экспертиза",
+    "gameDevTitle": "Game Development",
+    "technicalTitle": "Технические навыки",
+    "workTogether": "Давайте работать вместе",
+    "workTogetherText": "Меня всегда интересуют новые возможности и коллаборации. Будь то коммерческий проект или инновационный эксперимент - давайте создадим что-то потрясающее.",
+    "getInTouch": "Связаться",
+    "downloadResume": "Скачать резюме"
+  },
+  "projectCard": {
+    "company": "Компания",
+    "period": "Период",
+    "year": "Год",
+    "role": "Роль",
+    "teamSize": "Размер команды",
+    "technologies": "Технологии",
+    "viewDetails": "Подробнее"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "language": "Язык"
+  },
+  "projects": {
+    "sherlock": {
+      "title": "Sherlock: Hidden Match-3 Cases",
+      "description": "Level Designer и Technical Designer для успешной мобильной детективной игры, сочетающей match-3 головоломки с поиском предметов"
+    },
+    "empire": {
+      "title": "Empire of Vampire",
+      "description": "Technical Designer, работающий над бэкенд конфигурациями, системами персонажей и квестовой механикой для мобильной стратегии в вампирской тематике"
+    },
+    "stint": {
+      "title": "Stint: Rift Apart",
+      "description": "Мой первый коммерческий проект в роли Level Designer и Technical Designer, создание 40+ локаций и реализация логики ИИ врагов"
+    }
+  }
+}

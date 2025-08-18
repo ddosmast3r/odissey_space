@@ -12,12 +12,8 @@ platforms: ["iOS", "Android"]
 status: "Released"
 ---
 
-# Empire of Vampire
-
-## Gameplay Showcase
-
 <div className="my-8">
-  <div className="relative aspect-video rounded-lg overflow-hidden bg-black">
+  <div className="relative aspect-video rounded-lg overflow-hidden bg-black border border-green-400/50 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-green-500">
     <iframe
       src="https://www.youtube.com/embed/FjIer6rvtGE"
       title="Empire of Vampire - Official Trailer"
@@ -51,72 +47,97 @@ status: "Released"
   </a>
 </div>
 
-## Project Overview
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-300">Project Overview</h2>
+  <div className="text-base leading-relaxed">
+    A mobile strategy game with vampire themes where I worked as a Technical Designer, focusing on backend configuration systems, Unity actor management, and quest mechanics implementation.
+  </div>
+</div>
 
-**Empire of Vampire** is a mobile strategy game with vampire themes where I work as a Technical Designer, focusing on backend configuration systems, Unity actor management, and quest mechanics implementation.
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+  <div className="frosted-glass rounded-lg p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 transition-all duration-300 hover:shadow-lg hover:scale-105">
+    <h4 className="font-semibold text-lg mb-3 text-purple-700 dark:text-purple-300">⚙️ Quest System Implementation & Configuration</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Developed branching quest narratives with player-choice consequences</li>
+      <li>• Configured quest logic and objectives using JSON data structures</li>
+      <li>• Implemented validation tools for quest design consistency</li>
+      <li>• Integrated quest progress saving/loading systems</li>
+    </ul>
+  </div>
+  
+  <div className="frosted-glass rounded-lg p-6 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 transition-all duration-300 hover:shadow-lg hover:scale-105">
+    <h4 className="font-semibold text-lg mb-3 text-red-700 dark:text-red-300">🎮 Game Content Implementation</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Placed and configured actors/NPCs in Unity scenes</li>
+      <li>• Implemented vampire NPC behaviors with unique abilities</li>
+      <li>• Set up scene compositions and gameplay interactions</li>
+      <li>• Optimized in-game entity placement and performance</li>
+    </ul>
+  </div>
+  
+  <div className="frosted-glass rounded-lg p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 transition-all duration-300 hover:shadow-lg hover:scale-105">
+    <h4 className="font-semibold text-lg mb-3 text-blue-700 dark:text-blue-300">📊 Data Pipeline Integration</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Adapted JSON configurations for backend integration</li>
+      <li>• Utilized Google Sheets for efficient content iteration</li>
+      <li>• Implemented data-driven approaches for quest variations</li>
+      <li>• Troubleshot data-configuration mismatches</li>
+    </ul>
+  </div>
+</div>
 
-## My Role & Responsibilities
+<div className="frosted-glass p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h4 className="font-semibold text-lg mb-3 text-amber-700 dark:text-amber-300">🎯 Technical Focus</h4>
+  <div className="text-sm leading-relaxed">
+    My role centered on creating robust data-driven systems that bridged game design with technical implementation. 
+    I specialized in quest configuration, actor management, and ensuring seamless data flow between Unity frontend 
+    and backend services for this vampire-themed strategy game.
+  </div>
+</div>
 
-### Technical Design
-- **Backend Configuration**: Created and maintained JSON configuration files for backend systems
-- **Data Management**: Structured game data in spreadsheet tables for efficient backend integration
-- **System Integration**: Ensured seamless communication between frontend Unity client and backend services
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Technologies & Tools</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-blue-600 dark:text-blue-400">🔧 Development Stack</h4>
+      <ul className="space-y-2 text-sm">
+        <li><strong>Game Engine:</strong> Unity 2022.3 LTS</li>
+        <li><strong>Data Formats:</strong> JSON, CSV, Google Sheets integration</li>
+        <li><strong>Version Control:</strong> Git with configuration management workflows</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-green-600 dark:text-green-400">⚡ Integration & Testing</h4>
+      <ul className="space-y-2 text-sm">
+        <li><strong>Backend Integration:</strong> RESTful APIs and real-time data synchronization</li>
+        <li><strong>Testing Tools:</strong> Custom Unity editor tools for configuration validation</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-### Unity Development
-- **Actor Systems**: Configured and managed game actors, including behavior scripts and properties
-- **Quest Implementation**: Designed and implemented quest systems with branching narratives and objectives
-- **Scripting**: Developed and maintained Unity scripts for game mechanics and UI interactions
-
-### Configuration Management
-- **JSON Workflows**: Established efficient workflows for updating game configurations
-- **Data Validation**: Implemented systems to validate configuration data before deployment
-- **Version Control**: Managed configuration changes across different game versions
-
-## Project Achievements
-
-- **Live Service Support**: Maintained stable configuration systems for ongoing live service
-- **Quest Variety**: Implemented diverse quest types with complex objective tracking
-- **Data Reliability**: Achieved zero critical configuration errors in production
-- **Team Collaboration**: Streamlined technical workflows between design and development teams
-
-## Technical Challenges
-
-### Backend Integration
-- Designed robust JSON schemas for complex game data structures
-- Implemented fallback systems for configuration loading failures
-- Created tools for batch configuration updates
-
-### Unity Actor Management
-- Developed scalable actor systems supporting hundreds of concurrent entities
-- Implemented efficient state management for complex actor behaviors
-- Created debugging tools for actor system troubleshooting
-
-### Quest System Architecture
-- Built flexible quest framework supporting multiple objective types
-- Implemented save/load systems for quest progress persistence
-- Created validation systems for quest logic consistency
-
-## Key Features Delivered
-
-- **Dynamic Configuration System**: Real-time backend configuration updates
-- **Complex Actor Behaviors**: AI-driven vampire characters with unique abilities
-- **Branching Quest Narratives**: Multiple story paths with meaningful player choices
-- **Data-Driven Gameplay**: Flexible systems allowing rapid content iteration
-
-## Technologies & Tools
-
-- **Game Engine**: Unity 2022.3 LTS
-- **Data Formats**: JSON, CSV, Google Sheets integration
-- **Version Control**: Git with configuration management workflows
-- **Backend Integration**: RESTful APIs and real-time data synchronization
-- **Testing Tools**: Custom Unity editor tools for configuration validation
-
-## Impact & Learning
-
-This project enhanced my skills in:
-- **Backend Integration**: Deep understanding of client-server architecture
-- **Data Management**: Efficient workflows for large-scale configuration management  
-- **Unity Optimization**: Performance considerations for mobile platforms
-- **Live Service Operations**: Real-time content updates and configuration management
-
-Working on Empire of Vampire demonstrates my ability to handle complex technical systems while maintaining high reliability standards in a live service environment.
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Impact & Learning</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-purple-600 dark:text-purple-400">📈 Technical Growth</h4>
+      <ul className="space-y-3 text-sm">
+        <li><strong>Backend Integration:</strong> Deep understanding of client-server architecture</li>
+        <li><strong>Data Management:</strong> Efficient workflows for large-scale configuration management</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-orange-600 dark:text-orange-400">🚀 Operational Excellence</h4>
+      <ul className="space-y-3 text-sm">
+        <li><strong>Unity Optimization:</strong> Performance considerations for mobile platforms</li>
+        <li><strong>Live Service Operations:</strong> Real-time content updates and configuration management</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg border border-green-200 dark:border-green-700">
+    <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+      Working on <strong>Empire of Vampire</strong> demonstrates my ability to handle complex technical systems while maintaining high reliability standards in a live service environment.
+    </div>
+  </div>
+</div>

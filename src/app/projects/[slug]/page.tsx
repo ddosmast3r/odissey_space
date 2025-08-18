@@ -3,6 +3,7 @@ import { getProjectBySlug } from "@/lib/projects";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import ImageGallery from "@/components/ImageGallery";
+import PicoCadViewer from "@/components/PicoCadViewer";
 
 type RouteParams = { slug: string };
 
@@ -49,7 +50,7 @@ export default async function ProjectPage({ params }: { params: Promise<RoutePar
         <MDXRemote 
           source={project.content} 
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          components={{ ImageGallery }}
+          components={{ ImageGallery, PicoCadViewer }}
         />
       </div>
     </article>

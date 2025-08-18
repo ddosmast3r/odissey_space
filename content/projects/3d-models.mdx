@@ -1,0 +1,153 @@
+---
+title: "3D Models Collection"
+year: 2024
+projectType: "personal"
+disciplines: ["Pixel-Art", "picoCAD", "Modeling", "Low-poly"]
+description: "Personal collection of 3D models created in Blender, featuring characters, environments, and various objects"
+icon: "/images/3d-models/icon.gif"
+status: "Ongoing"
+---
+
+<div className="mb-6 p-4 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 border-l-4 border-yellow-500 rounded-lg shadow-sm">
+  <div className="flex items-center space-x-3">
+    <div className="text-2xl">🚧</div>
+    <div>
+      <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-1">
+        Work in Progress
+      </h4>
+      <div className="text-sm text-yellow-700 dark:text-yellow-300">
+        The 3D viewer is under active development. Currently available in 2D mode for model preview.
+        Full 3D rendering requires WebGL support in your browser.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="my-8">
+  <div className="text-center">
+    <div className="text-6xl mb-4">🎨</div>
+    <h3 className="text-2xl font-bold mb-4 text-blue-700 dark:text-blue-300">3D Models Showcase</h3>
+    <div className="text-lg opacity-80 mb-6 max-w-2xl mx-auto">
+      Gallery of 3D models and artwork created using Blender. 
+      Featuring character designs, environment pieces, and various artistic experiments.
+    </div>
+    <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-4 inline-block">
+      <div className="text-sm font-medium text-blue-700 dark:text-blue-300">
+        🔬 PicoCad Viewer (Beta)
+      </div>
+      <div className="text-xs opacity-70 mt-1">
+        View .txt picoCAD models • 2D/3D modes
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-300">Project Overview</h2>
+  <div className="text-base leading-relaxed">
+    A personal collection of 3D models and artwork created using Blender. This ongoing project showcases my exploration of 3D modeling techniques, character design, and environment creation as a creative outlet and skill development exercise.
+  </div>
+</div>
+
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">🔬 Interactive PicoCad Viewer (Beta)</h2>
+  <div className="text-base leading-relaxed mb-6">
+    Experimental web viewer for PicoCad models. Load .txt files and explore 3D model structures. 
+    Depending on WebGL support, displays either full 3D rendering or 2D wireframe with model information.
+  </div>
+  
+  <PicoCadViewer 
+    width={800} 
+    height={600} 
+    className="w-full"
+  />
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+  <div className="frosted-glass rounded-lg p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 transition-all duration-300 hover:shadow-lg hover:scale-105">
+    <h4 className="font-semibold text-lg mb-3 text-blue-700 dark:text-blue-300">🎭 Character Modeling</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Stylized character designs and concepts</li>
+      <li>• Low-poly and high-poly modeling techniques</li>
+      <li>• Character rigging and basic animation</li>
+      <li>• Texture painting and material creation</li>
+    </ul>
+  </div>
+  
+  <div className="frosted-glass rounded-lg p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 transition-all duration-300 hover:shadow-lg hover:scale-105">
+    <h4 className="font-semibold text-lg mb-3 text-green-700 dark:text-green-300">🏘️ Environment Art</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Architectural modeling and scene composition</li>
+      <li>• Natural environment creation (trees, rocks, terrain)</li>
+      <li>• Lighting setup and atmosphere design</li>
+      <li>• Modular asset creation for game environments</li>
+    </ul>
+  </div>
+  
+  <div className="frosted-glass rounded-lg p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 transition-all duration-300 hover:shadow-lg hover:scale-105">
+    <h4 className="font-semibold text-lg mb-3 text-purple-700 dark:text-purple-300">⚙️ Technical Skills</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Blender workflow optimization and shortcuts</li>
+      <li>• UV mapping and texture optimization</li>
+      <li>• Node-based material creation</li>
+      <li>• Render engine comparison (Cycles vs EEVEE)</li>
+    </ul>
+  </div>
+</div>
+
+<div className="frosted-glass p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h4 className="font-semibold text-lg mb-3 text-amber-700 dark:text-amber-300">🎯 Creative Process</h4>
+  <div className="text-sm leading-relaxed">
+    My 3D modeling process focuses on learning through experimentation and iteration. Each model serves as an opportunity to explore new techniques, from basic mesh modeling to advanced sculpting and procedural material creation. The goal is to develop a versatile skill set applicable to both game development and artistic expression.
+  </div>
+</div>
+
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Tools & Techniques</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-blue-600 dark:text-blue-400">🛠️ Primary Tools</h4>
+      <ul className="space-y-2 text-sm">
+        <li><strong>Blender 3D:</strong> Main modeling and animation software</li>
+        <li><strong>Substance Painter:</strong> Advanced texturing workflows</li>
+        <li><strong>GIMP/Photoshop:</strong> Texture editing and post-processing</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-green-600 dark:text-green-400">⚡ Specializations</h4>
+      <ul className="space-y-2 text-sm">
+        <li><strong>Stylized Art:</strong> Cartoon and game-ready asset creation</li>
+        <li><strong>Low-Poly Design:</strong> Optimized models for real-time applications</li>
+        <li><strong>Procedural Materials:</strong> Node-based shader development</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div className="frosted-glass p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 my-8">
+  <h2 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-300">Learning & Development</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-purple-600 dark:text-purple-400">📈 Skills Developed</h4>
+      <ul className="space-y-3 text-sm">
+        <li><strong>3D Fundamentals:</strong> Understanding of mesh topology, edge flow, and polygon optimization</li>
+        <li><strong>Artistic Eye:</strong> Color theory, composition, and visual storytelling in 3D space</li>
+        <li><strong>Technical Workflow:</strong> Efficient modeling pipelines and asset organization</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-semibold text-lg mb-3 text-orange-600 dark:text-orange-400">🚀 Future Goals</h4>
+      <ul className="space-y-3 text-sm">
+        <li><strong>Animation:</strong> Character animation and motion graphics</li>
+        <li><strong>Sculpting:</strong> Organic modeling and detail work using Blender's sculpting tools</li>
+        <li><strong>Real-time Assets:</strong> Game-ready models optimized for Unity and Unreal Engine</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg border border-green-200 dark:border-green-700">
+    <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+      This <strong>3D Models Collection</strong> represents my ongoing journey in 3D art creation, combining technical skill development with creative expression to build a diverse portfolio of digital artwork.
+    </div>
+  </div>
+</div>

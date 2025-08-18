@@ -14,7 +14,14 @@
       "Bash(wsl cat:*)",
       "Bash(npx tsc:*)",
       "Bash(npx eslint:*)",
-      "Bash(cmd /c:*)"
+      "Bash(cmd /c:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:lucatronica.github.io)",
+      "Bash(cp:*)",
+      "Bash(node:*)",
+      "Bash(del test-parser.js simple-test.js)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

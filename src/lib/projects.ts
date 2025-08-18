@@ -15,6 +15,7 @@ export type ProjectFrontmatter = {
   workPeriod?: string;
   tags?: string[];
   cover?: string;
+  icon?: string;
   gallery?: string[];
   video?: string;
   client?: string;

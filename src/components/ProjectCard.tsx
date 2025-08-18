@@ -16,15 +16,20 @@ export default function ProjectCard({ project }: { project: Project }) {
       className="group block frosted-glass rounded-2xl p-6 transition-all duration-300"
     >
       <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
-        {translatedProject.cover ? (
+        {(project.icon || translatedProject.cover) ? (
           <div className="flex-shrink-0 w-full sm:w-48 md:w-32 lg:w-36">
             <div className="relative aspect-square rounded-lg overflow-hidden">
               <Image
-                src={translatedProject.cover}
+                src={project.icon || translatedProject.cover}
                 alt={translatedProject.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className={`object-cover transition-transform duration-300 ${
+                  project.icon 
+                    ? 'object-center scale-125 group-hover:scale-135' 
+                    : 'object-cover group-hover:scale-105'
+                }`}
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 192px, (max-width: 1024px) 128px, 144px"
+                unoptimized={project.icon?.endsWith('.gif')}
               />
             </div>
           </div>
@@ -37,7 +42,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         )}
         
         <div className="flex-1 min-w-0">
-          <div className="text-lg md:text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors font-poppins">
+          <div className="text-lg md:text-xl font-semibold mb-2 group-hover:text-green-500 transition-colors font-poppins">
             {translatedProject.title}
           </div>
           
